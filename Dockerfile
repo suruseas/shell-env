@@ -3,11 +3,15 @@ FROM ubuntu:20.04
 # 実行ユーザ指定
 ARG user
 
+# manコマンド使いたかったら unminimize コマンドを別途実行してください。時間がかかるのでここではskipします。
+
 RUN <<EOF
   apt-get update
   apt-get install -y --no-install-recommends \
           vim \
           git \
+          sudo \
+          man-db \
           bc
 EOF
 
