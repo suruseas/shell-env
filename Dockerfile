@@ -12,8 +12,12 @@ RUN <<EOF
           git \
           sudo \
           man-db \
-          bc
+          locales \
+          bc \
+          gawk
 EOF
+
+RUN locale-gen ja_JP.UTF-8
 
 RUN <<EOF
   useradd -s /bin/bash -m ${user:-user}
@@ -27,6 +31,6 @@ USER ${user:-user}
 WORKDIR /usr/src/app
 
 RUN echo "alias ll='ls -la'" >> ~/.bashrc
-
+RUN echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
 
 CMD [ "bash" ]
