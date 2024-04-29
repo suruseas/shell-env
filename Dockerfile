@@ -26,6 +26,11 @@ RUN <<EOF
 EOF
 
 RUN echo "${user:-user} ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
+# git cloneできるように
+RUN apt-get install -y --reinstall ca-certificates
+
+RUN mkdir -p /usr/src/app/shellgei160 && \
+    chown ${user:-user}:${user:-user} /usr/src/app/shellgei160
 
 USER ${user:-user}
 WORKDIR /usr/src/app

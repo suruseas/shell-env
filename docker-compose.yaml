@@ -3,3 +3,5 @@ services:
     build: .
     command: /bin/bash
     tty: true
+    volumes:
+      - ./shellgei160:/usr/src/app/shellgei160
