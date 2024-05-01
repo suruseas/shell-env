@@ -17,7 +17,8 @@ RUN <<EOF
           bc \
           gawk \
           tzdata \
-          imagemagick
+          imagemagick \
+          parallel
 EOF
 
 RUN locale-gen ja_JP.UTF-8
