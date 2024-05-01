@@ -7,6 +7,7 @@ ARG user
 
 RUN <<EOF
   apt-get update
+  DEBIAN_FRONTEND=noninteractive apt-get install -y git tzdata
   apt-get install -y --no-install-recommends \
           vim \
           git \
@@ -14,7 +15,9 @@ RUN <<EOF
           man-db \
           locales \
           bc \
-          gawk
+          gawk \
+          tzdata \
+          imagemagick
 EOF
 
 RUN locale-gen ja_JP.UTF-8
