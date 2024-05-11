@@ -18,7 +18,10 @@ RUN <<EOF
           gawk \
           tzdata \
           imagemagick \
-          parallel
+          parallel \
+          rename \
+          ripgrep \
+          fd-find
 EOF
 
 RUN locale-gen ja_JP.UTF-8
@@ -39,7 +42,11 @@ RUN mkdir -p /usr/src/app/shellgei160 && \
 USER ${user:-user}
 WORKDIR /usr/src/app
 
+RUN echo "[[ -n \$(toe -a | cut -f1 | grep 'xterm-256color') ]] && export TERM='xterm-256color'" >> ~/.bashrc
 RUN echo "alias ll='ls -la'" >> ~/.bashrc
 RUN echo "export LANG=ja_JP.UTF-8" >> ~/.bashrc
+
+# fd-findのシンボリックリンクを作成
+RUN ln -s $(which fdfind) /usr/local/bin/fd
 
 CMD [ "bash" ]
